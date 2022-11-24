@@ -1,0 +1,24 @@
+@import '../invis.css';
+
+:root {
+  --white: #fefefe;
+  --active: #648EFB;
+  --blue: #bfd5fd;
+  --light-blue: #CBDDFF33;
+  --black: #010101;
+  --black-60: #01010199;
+}
+
+*{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
+body{
+  background-color: var(--white);
+  color: var(--black);
+}
+
+h1{
+  font-size: 36px;
+  font-weight: 900;
+}

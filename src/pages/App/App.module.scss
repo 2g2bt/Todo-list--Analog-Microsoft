@@ -1,0 +1,146 @@
+.Header{
+    width: 100%;
+    height: 92px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 30px;
+    p{
+        color: var(--black-60);
+        margin-bottom: 4px;
+    }
+}
+.AppContent{
+    display: flex;
+    height: calc(100vh - 92px);
+}
+.LeftSide{
+    min-width: 388px;
+    height: calc(100vh - 92px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    ul{
+        margin-top: 108px;
+        width: 100%;
+        padding: 0 20px 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    li{
+        height: 71px;
+        padding: 0 30px;
+        gap: 30px;
+        display: flex;
+        align-items: center;
+        border-radius: 0 10px 10px 0;
+        img{
+            height: 18px;
+        }
+        &.active{
+            background-color: var(--light-blue);
+            h2{
+                font-weight: 700;
+            }
+            &::before{
+                position: absolute;
+                left: 6px;
+                content: '।';
+                color: var(--active);
+                height: 25px;
+                font-size: 30px;
+                width: 3px;
+            }
+        }
+    }
+    h2{
+        font-size: 20px;
+        font-weight: 600;
+    }
+    button{
+        height: 71px;
+        padding: 0 30px;
+        gap: 30px;
+        display: flex;
+        align-items: center;
+        border-radius: 0 10px 10px 0;
+        font-size: 20px;
+        background-color: var(--white);
+        font-weight: 600;
+    }
+}
+.RightSide{
+    border-top-left-radius: 20px;
+    background-color: var(--blue);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .List{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: auto;
+    }
+    &_ListTodos{
+        width: 100%;
+        height: calc(100% - 139px);
+        padding: 33px 69px;
+        display: flex;
+        flex-direction: column;
+        &_title{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        h1{
+            margin-bottom: 43px;
+            font-weight: 700;
+        }
+        &_Todo{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            min-height: 71px;
+            width: 100%;
+            border-radius: 10px;
+            background-color: var(--white);
+            font-size: 20px;
+            font-weight: 400;
+            &_text{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    }
+    &_NewTodo{
+        width: 100%;
+        height: 139px;
+        display: flex;
+        display: flex;
+        align-items: center;
+        padding: 0 69px;
+        &_Form{
+            height: 71px;
+            width: 100%;
+            padding: 0 20px;
+            border-radius: 10px;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            button{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                height: 71px;
+                width: 100%;
+                border-radius: 10px;
+                background-color: var(--white);
+                font-size: 20px;
+                font-weight: 400;
+            }
+        }
+    }
+}
