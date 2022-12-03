@@ -114,6 +114,11 @@
                 gap: 20px;
             }
         }
+        .done{
+            opacity: 0.4;
+            text-decoration: line-through;
+            color: var(--black-60);
+        }
     }
     &_NewTodo{
         width: 100%;
@@ -142,5 +147,11 @@
                 font-weight: 400;
             }
         }
+    }
+    .line{
+        width: 100%;
+        height: 2px;
+        border: 1px solid var(--shadow);
+        border-radius: 2px;
     }
 }

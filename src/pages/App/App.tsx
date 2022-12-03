@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import s from './App.module.scss'
 import list from '../../assets/list.svg'
 import add from '../../assets/add.svg'
@@ -6,9 +5,23 @@ import undone from '../../assets/circle.svg'
 import done from '../../assets/circle-done.svg'
 import x from '../../assets/delete.svg'
 import settings from '../../assets/settings.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import {addTodo, removeTodo, doneTodo} from '../../features/todos/todosSlice'
+import uuid4 from 'uuid4'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const todos = useSelector((state:any) => state.todos.todos)
+  const dispatch = useDispatch()
+
+  const id = uuid4()
+  const time = +new Date()
+  const todo = {
+    id: id,
+    time: time,
+    done: false,
+    title: "Выспаться",
+  }
 
   return (
     <div className="App">
@@ -32,20 +45,39 @@ function App() {
               <img src={settings}/>
             </div>
             <div className={s.List}>
-            <div className={s.RightSide_ListTodos_Todo}>
-              <div className={s.RightSide_ListTodos_Todo_text}>
-                <img src={undone}/>
-                <p>Погулять с собакой</p>
-              </div>
-              <img src={x}/>
-            </div>
+              {todos.map((el:any, index:any) => {
+               return !el.done ?  
+                <div key={index} className={s.undone}>
+                  <div className={s.RightSide_ListTodos_Todo}>
+                    <div className={s.RightSide_ListTodos_Todo_text}>
+                      <img onClick={()=> dispatch(doneTodo(el))} src={el.done ? done : undone}/>
+                      <p>{el.title}</p>
+                    </div>
+                    <img onClick={() => dispatch(removeTodo(el))} src={x}/>
+                  </div>
+                </div>
+               : null})}
+              <div className={todos.length > 0 ? s.line : s.none}></div>
+              {todos.map((el:any, index:any) => {
+                return !!el.done ?
+                (
+                <div key={index} className={s.done}>
+                  <div className={s.RightSide_ListTodos_Todo}>
+                    <div className={s.RightSide_ListTodos_Todo_text}>
+                      <img onClick={()=> dispatch(doneTodo(el))} src={el.done ? done : undone}/>
+                      <p>{el.title}</p>
+                    </div>
+                    <img onClick={() => dispatch(removeTodo(el))} src={x}/>
+                  </div>
+                </div>
+              ) : null})}
             
             </div>
 
           </div>
           <div className={s.RightSide_NewTodo}>
             <div className={s.RightSide_NewTodo_Form}>
-              <button><img src={add}/>Добавить список</button>
+              <button onClick={() => dispatch(addTodo(todo))}><img src={add}/>Добавить список</button>
             </div>
           </div>
         </div>
