@@ -4,15 +4,20 @@ import add from '../../assets/add.svg'
 import undone from '../../assets/circle.svg'
 import done from '../../assets/circle-done.svg'
 import x from '../../assets/delete.svg'
+import confirm from '../../assets/check.svg'
 import settings from '../../assets/settings.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import {addTodo, removeTodo, doneTodo} from '../../features/todos/todosSlice'
 import uuid4 from 'uuid4'
+import { useState } from 'react'
 
 function App() {
 
   const todos = useSelector((state:any) => state.todos.todos)
   const dispatch = useDispatch()
+  const [input, setInput] = useState(false)
+
+  const [todoTitle, setTodoTitle] = useState('')
 
   const id = uuid4()
   const time = +new Date()
@@ -20,7 +25,15 @@ function App() {
     id: id,
     time: time,
     done: false,
-    title: "Выспаться",
+    title: todoTitle,
+  }
+
+  const addNewTodo = () => {
+    setInput(() => !input);
+  }
+  const sendTodoData = (data:any) => {
+    addNewTodo();
+    dispatch(addTodo(data))
   }
 
   return (
@@ -77,7 +90,15 @@ function App() {
           </div>
           <div className={s.RightSide_NewTodo}>
             <div className={s.RightSide_NewTodo_Form}>
-              <button onClick={() => dispatch(addTodo(todo))}><img src={add}/>Добавить список</button>
+              {input ? 
+              <div className={s.input}>
+                <img src={undone}/>
+                <input type='text' placeholder='Текст задачи' onChange={(e) => setTodoTitle(e.target.value)}/>
+                <img src={confirm} onClick={() => sendTodoData(todo)}/>
+              </div> 
+              
+              :
+              <button onClick={() => addNewTodo()}><img src={add}/>Добавить список</button>}
             </div>
           </div>
         </div>

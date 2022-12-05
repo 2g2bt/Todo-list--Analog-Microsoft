@@ -5,26 +5,6 @@ import _default from "react-redux/es/components/connect";
 
 const initialState:any = {
     todos: [
-        {
-            id: 121212,
-            done: false,
-            title: 'Помыть лапы'
-        },
-        {   
-            id: 1278612538712635,
-            done: false,
-            title: 'Помыть голову'
-        },
-        {
-            id: 2861237,
-            done: true,
-            title: 'Стать счастливым'
-        },
-        {
-            id: 2867127963521,
-            done: true,
-            title: 'Купить молоко'
-        },
     ]
 }
 
