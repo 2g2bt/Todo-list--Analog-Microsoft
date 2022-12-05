@@ -4,7 +4,8 @@ import _default from "react-redux/es/components/connect";
 //Нужен будет пример для TypeScript
 
 const initialState:any = {
-    todos: [
+    lists: [
+        {todos: []},
     ]
 }
 
@@ -13,14 +14,14 @@ export const todosSlice = createSlice({
     initialState,
     reducers: {
         addTodo: (state, action) => {
-            state.todos.push(action.payload)
+            state.lists[0].todos.push(action.payload)
         },
         removeTodo: (state, action) => {
-            state.todos = state.todos.filter((el:any) => el.id !== action.payload.id)
+            state.lists[0].todos = state.lists[0].todos.filter((el:any) => el.id !== action.payload.id)
             console.log(action.payload)
         },
         doneTodo: ( state, action) => {
-            state.todos = state.todos.map((el:any) => el.id === action.payload.id ? el = {id: action.payload.id, time: action.payload.time, done: !action.payload.done, title: action.payload.title} : el)
+            state.lists[0].todos = state.lists[0].todos.map((el:any) => el.id === action.payload.id ? el = {id: action.payload.id, time: action.payload.time, done: !action.payload.done, title: action.payload.title} : el)
         },
     }
 })

@@ -13,7 +13,7 @@ import { useState } from 'react'
 
 function App() {
 
-  const todos = useSelector((state:any) => state.todos.todos)
+  const todos = useSelector((state:any) => state.todos.lists[0].todos)
   const dispatch = useDispatch()
   const [input, setInput] = useState(false)
 
@@ -40,12 +40,12 @@ function App() {
     <div className="App">
       <div className={s.Header}>
         <h1>TODO</h1>
-        <p>made by Zakhar Ukhanov</p>
+        <a href='https://github.com/TePMo-Tapo4eK' target="_blank">made by Zakhar Ukhanov</a>
       </div>
       <div className={s.AppContent}>
         <div className={s.LeftSide}>
           <ul>
-            <li className={s.active}><img src={list}/><h2>Понедельник</h2></li>
+            <li className={s.active}><img src={list}/><h2>Мой день</h2></li>
             <li><img src={list}/><h2>Понедельник</h2></li>
             <li><img src={list}/><h2>Понедельник</h2></li>
           </ul>
