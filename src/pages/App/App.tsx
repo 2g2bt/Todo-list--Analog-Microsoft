@@ -10,10 +10,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import {addTodo, removeTodo, doneTodo} from '../../features/todos/todosSlice'
 import uuid4 from 'uuid4'
 import { useState } from 'react'
+import { useParams, Link } from 'react-router-dom'
 
 function App() {
 
-  const todos = useSelector((state:any) => state.todos.lists[0].todos)
+  const {listActive} = useParams()
+
+  const todoLists = useSelector((state:any) => state.todos.lists)
+  const name = useSelector((state:any) => state.todos.lists[Number(listActive) - 1].name)
+  const todos = useSelector((state:any) => state.todos.lists[Number(listActive) - 1].todos)
   const dispatch = useDispatch()
   const [input, setInput] = useState(false)
 
@@ -45,16 +50,14 @@ function App() {
       <div className={s.AppContent}>
         <div className={s.LeftSide}>
           <ul>
-            <li className={s.active}><img src={list}/><h2>Мой день</h2></li>
-            <li><img src={list}/><h2>Понедельник</h2></li>
-            <li><img src={list}/><h2>Понедельник</h2></li>
+            {todoLists.map((el:any, index: number)=>(<li><Link key={index} to={`/${index + 1}`} className={ index + 1 == Number(listActive) ? s.active : s.li}><img src={list}/><h2>{el.name}</h2></Link></li>))}
           </ul>
           <button><img src={add}/>Добавить список</button>
         </div>
         <div className={s.RightSide}>
           <div className={s.RightSide_ListTodos}>
             <div className={s.RightSide_ListTodos_title}>
-              <h1>Понедельник</h1>
+              <h1>{name}</h1>
               <img src={settings}/>
             </div>
             <div className={s.List}>
@@ -98,7 +101,7 @@ function App() {
               </div> 
               
               :
-              <button onClick={() => addNewTodo()}><img src={add}/>Добавить список</button>}
+              <button onClick={() => addNewTodo()}><img src={add}/>Добавить задачу</button>}
             </div>
           </div>
         </div>

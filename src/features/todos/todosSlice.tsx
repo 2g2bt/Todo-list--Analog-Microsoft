@@ -5,7 +5,9 @@ import _default from "react-redux/es/components/connect";
 
 const initialState:any = {
     lists: [
-        {todos: []},
+        {id: 1, name: 'Мой день', todos: []},
+        {name: 'Понедельник', todos: []},
+        {name: 'Вторник', todos: []},
     ]
 }
 
